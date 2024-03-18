@@ -1,18 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from React Router
 import AddUser from '../Dashboard/Adduser';
 import AddAdmin from '../Dashboard/Admin/Admin/AddAdmin';
 import DeleteUser from '../Dashboard/DeleteUsers';
 import UserSearchComponent from '../Dashboard/UserSearchComponent';
 
-import { BiBookAlt, BiHome } from "react-icons/bi";
-import { BiHome, BiBookAlt } from "react-icons/bi";
-import { MdAutoDelete } from "react-icons/md";
-import { IoPersonAdd } from "react-icons/io5";
-import { GrUpdate } from "react-icons/gr";
-import { IoIosSearch } from "react-icons/io";
+import { BiBookAlt, BiHome } from 'react-icons/bi';
+import { MdAutoDelete } from 'react-icons/md';
+import { IoPersonAdd, IoSearch } from 'react-icons/io5';
+import { GrUpdate } from 'react-icons/gr';
 
-import "../styles/dashboard.css";
+import '../styles/dashboard.css';
 
 const Sidebar = () => {
   const [showAddUserModal, setShowAddUserModal] = useState(false);
@@ -28,11 +26,9 @@ const Sidebar = () => {
     }
   }, []);
 
-
   const handleAddUserClick = () => {
     setShowAddUserModal(true);
   };
-
 
   const handleDeleteUserClick = () => {
     setShowDeleteUserModal(true);
@@ -52,6 +48,7 @@ const Sidebar = () => {
 
   const handleCloseUserSearchComponentModal = () => {
     setShowUserSearchComponentModal(false);
+  };
 
   const handleAddAdminClick = () => {
     setShowAddAdminModal(true);
@@ -60,47 +57,39 @@ const Sidebar = () => {
   const handleCloseModal = () => {
     setShowAddUserModal(false);
     setShowAddAdminModal(false);
-
   };
 
   return (
-    <div className='menu'>
-      <div className='logo'>
-        <BiBookAlt className='logo-icon'/>
+    <div className="menu">
+      <div className="logo">
+        <BiBookAlt className="logo-icon" />
         <h2>VB</h2>
       </div>
-      <div className='menu-list'>
-        <a href="#" className="item">
-          <BiHome className='ico'/>
+      <div className="menu-list">
+        <Link to="/" className="item">
+          <BiHome className="ico" />
           Home
-        </a>
-        <a href="#" className='item' onClick={handleAddUserClick}>
-          <IoPersonAdd className='ico'/>
+        </Link>
+        <a href="#" className="item" onClick={handleAddUserClick}>
+          <IoPersonAdd className="ico" />
           Add user
         </a>
-       
-        <a href="#" className='item'  onClick={handleDeleteUserClick}>
-
-     
-        {isFullRole && ( // Render the "Add admin" button only if the role is "full"
-          <a href="#" className='item' onClick={handleAddAdminClick}>
-            <IoPersonAdd className='ico'/>
+        {isFullRole && (
+          <a href="#" className="item" onClick={handleAddAdminClick}>
+            <IoPersonAdd className="ico" />
             Add admin
           </a>
         )}
-
-  
-        <a href="#" className='item'>
-i
-          <MdAutoDelete/>
+        <a href="#" className="item" onClick={handleDeleteUserClick}>
+          <MdAutoDelete />
           Delete
         </a>
-        <a href="#" className='item'>
-          <GrUpdate className='ico'/>
+        <a href="#" className="item">
+          <GrUpdate className="ico" />
           Updates
         </a>
-        <a href="#" className='item'  onClick={handleUserSearchComponentClick}>
-          <IoIosSearch className='ico'/>
+        <a href="#" className="item" onClick={handleUserSearchComponentClick}>
+          <IoSearch className="ico" />
           Search
         </a>
       </div>
@@ -116,7 +105,6 @@ i
         </div>
       )}
 
-
       {showDeleteUserModal && (
         <div className="modal">
           <div className="modal-content">
@@ -129,15 +117,15 @@ i
       )}
 
       {showUserSearchComponentModal && (
-              <div className="modal">
-                <div className="modal-content">
-                  <span className="close" onClick={handleCloseUserSearchComponentModal}>
-                    &times;
-                  </span>
-                  <UserSearchComponent />
-                </div>
-              </div>
-            )}
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseUserSearchComponentModal}>
+              &times;
+            </span>
+            <UserSearchComponent />
+          </div>
+        </div>
+      )}
 
       {showAddAdminModal && (
         <div className="modal">
@@ -149,7 +137,6 @@ i
           </div>
         </div>
       )}
-
     </div>
   );
 };
