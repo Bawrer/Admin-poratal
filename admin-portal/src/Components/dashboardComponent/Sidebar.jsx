@@ -7,7 +7,8 @@ import UserSearchComponent from '../Dashboard/UserSearchComponent';
 
 import { BiBookAlt, BiHome } from 'react-icons/bi';
 import { MdAutoDelete } from 'react-icons/md';
-import { IoPersonAdd, IoSearch } from 'react-icons/io5';
+import { IoPersonAdd} from 'react-icons/io5';
+import { FaUsersViewfinder } from "react-icons/fa6";
 import { GrUpdate } from 'react-icons/gr';
 
 import '../styles/dashboard.css';
@@ -89,8 +90,8 @@ const Sidebar = () => {
           Updates
         </a>
         <a href="#" className="item" onClick={handleUserSearchComponentClick}>
-          <IoSearch className="ico" />
-          Search
+          <FaUsersViewfinder  className="ico" />
+          View users
         </a>
       </div>
 
