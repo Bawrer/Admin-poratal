@@ -28,7 +28,7 @@ const UserList = () => {
   return (
     <div className='User--List'> 
     <div className='list--header'>
-      <h2>Users</h2>
+      <h2>Candidates</h2>
       <select>
          <option value="CA">Software</option>
          <option value="Developer">Dev</option>

@@ -1,24 +1,38 @@
-import React, { useState } from 'react';
-import { BiBookAlt, BiHome } from "react-icons/bi";
-import { GrUpdate } from "react-icons/gr";
-import { IoIosSearch } from "react-icons/io";
-import { IoPersonAdd } from "react-icons/io5";
-import { MdAutoDelete } from "react-icons/md";
+
+import React, { useState, useEffect } from 'react';
 import AddUser from '../Dashboard/Adduser';
+import AddAdmin from '../Dashboard/Admin/Admin/AddAdmin';
 import DeleteUser from '../Dashboard/DeleteUsers';
 import UserSearchComponent from '../Dashboard/UserSearchComponent';
+
+import { BiBookAlt, BiHome } from "react-icons/bi";
+import { BiHome, BiBookAlt } from "react-icons/bi";
+import { MdAutoDelete } from "react-icons/md";
+import { IoPersonAdd } from "react-icons/io5";
+import { GrUpdate } from "react-icons/gr";
+import { IoIosSearch } from "react-icons/io";
+
 import "../styles/dashboard.css";
 
 const Sidebar = () => {
   const [showAddUserModal, setShowAddUserModal] = useState(false);
   const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
   const [showUserSearchComponentModal, setShowUserSearchComponentModal] = useState(false);
+  const [showAddAdminModal, setShowAddAdminModal] = useState(false);
+  const [isFullRole, setIsFullRole] = useState(false);
+
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+    if (role === 'full') {
+      setIsFullRole(true);
+    }
+  }, []);
+
 
   const handleAddUserClick = () => {
     setShowAddUserModal(true);
   };
 
- 
 
   const handleDeleteUserClick = () => {
     setShowDeleteUserModal(true);
@@ -38,6 +52,15 @@ const Sidebar = () => {
 
   const handleCloseUserSearchComponentModal = () => {
     setShowUserSearchComponentModal(false);
+
+  const handleAddAdminClick = () => {
+    setShowAddAdminModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowAddUserModal(false);
+    setShowAddAdminModal(false);
+
   };
 
   return (
@@ -55,19 +78,30 @@ const Sidebar = () => {
           <IoPersonAdd className='ico'/>
           Add user
         </a>
-
        
         <a href="#" className='item'  onClick={handleDeleteUserClick}>
+
+     
+        {isFullRole && ( // Render the "Add admin" button only if the role is "full"
+          <a href="#" className='item' onClick={handleAddAdminClick}>
+            <IoPersonAdd className='ico'/>
+            Add admin
+          </a>
+        )}
+
+  
+        <a href="#" className='item'>
+i
           <MdAutoDelete/>
           Delete
         </a>
         <a href="#" className='item'>
           <GrUpdate className='ico'/>
-          updates
+          Updates
         </a>
         <a href="#" className='item'  onClick={handleUserSearchComponentClick}>
           <IoIosSearch className='ico'/>
-          search
+          Search
         </a>
       </div>
 
@@ -81,6 +115,7 @@ const Sidebar = () => {
           </div>
         </div>
       )}
+
 
       {showDeleteUserModal && (
         <div className="modal">
@@ -103,6 +138,18 @@ const Sidebar = () => {
                 </div>
               </div>
             )}
+
+      {showAddAdminModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseModal}>
+              &times;
+            </span>
+            <AddAdmin handleCloseModal={handleCloseModal} />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
