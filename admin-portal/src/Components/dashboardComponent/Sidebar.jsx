@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from React Router
 import AddUser from '../Dashboard/Adduser';
 import AddAdmin from '../Dashboard/Admin/Admin/AddAdmin';
@@ -6,10 +6,10 @@ import DeleteUser from '../Dashboard/DeleteUsers';
 import UserSearchComponent from '../Dashboard/UserSearchComponent';
 
 import { BiBookAlt, BiHome } from 'react-icons/bi';
-import { MdAutoDelete } from 'react-icons/md';
-import { IoPersonAdd} from 'react-icons/io5';
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { GrUpdate } from 'react-icons/gr';
+import { IoPersonAdd } from 'react-icons/io5';
+import { MdAutoDelete } from 'react-icons/md';
 
 import '../styles/dashboard.css';
 
