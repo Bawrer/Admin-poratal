@@ -1,7 +1,7 @@
  import React from 'react'
  import Sidebar from './dashboardComponent/Sidebar'
 //  import ContentHeader from './dashboardComponent/ContentHeader'
- import Content from  './dashboardComponent/Content'
+ import Content from  './dashboardComponent/content'
  import Profile  from './dashboardComponent/profile'
  
 //  import './Components/styles/ContentHeader.css'
