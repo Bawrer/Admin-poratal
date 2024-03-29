@@ -1,27 +1,33 @@
+// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaUser, FaKey } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post('http://localhost:5000/api/login', {
-        username,
+        email,
         password,
       });
-  
+
       if (response.status === 200) {
         console.log("Login successful");
-        // Navigate to Home component
+        const { admin, token} = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('adminName', admin.name);
+        localStorage.setItem('photo',admin.photo)
+        localStorage.setItem('role',admin.role)
         navigate('/dashboard');
+        console.log(response)
       } else {
         setError("Invalid username or password");
         throw new Error('Login failed');
@@ -42,8 +48,8 @@ function Login() {
             <input
               type="text"
               placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>

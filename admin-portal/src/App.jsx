@@ -4,14 +4,13 @@ import './App.css'; // Assuming App.css is located in the same directory
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
 
-
 function App() {
   return (
     <div className="App"> {/* Assuming you have a div with class App for styling */}
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} /> {/* Assuming the Login component is rendered at the root path */}
-          <Route path="/dashboard" element={ <Dashboard /> } /> {/* Render the Home component when navigating to /home */}
+          <Route path="/Login" element={<Login />} /> {/* Define route for "/Login" */}
+          <Route path="/dashboard" element={<Dashboard />} /> {/* Define route for "/dashboard" */}
         </Routes>
       </Router>
     </div>

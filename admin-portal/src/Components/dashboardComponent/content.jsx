@@ -8,7 +8,7 @@ const Content = () => {
     <div className='content'>
       <ContentHeader/>
       <Card/>
-      <UserList/>
+     <UserList />
     </div>
   )
 }
